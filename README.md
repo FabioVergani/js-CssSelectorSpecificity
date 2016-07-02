@@ -28,6 +28,9 @@ Basically1, a name must begin with an underscore (_), a hyphen (-), or a letter(
 
 -?[_a-zA-Z]+[_a-zA-Z0-9-]*
 
+
+(io propongo: #([-][_A-Z]{2}|[_A-Z][-_A-Z\d]+))
+
 -?(?:[_a-z]|[\200-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])(?:[_a-z0-9-]|[\200-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*
 So all of your listed character except “-” and “_” are not allowed if used directly.
 But you can encode them using a backslash foo\~bar or using the unicode notation foo\7E bar
