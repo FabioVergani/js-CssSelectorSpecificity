@@ -1,0 +1,19 @@
+SpecificityOf
+
+//
+function SpecificityOf(selector,inline=0){
+
+ const s=selector,r=[inline,0,0,0];
+ let m;
+ if(m=s.match(/(^|\s)[A-Z]+/gim)){r[3]=m.length;};//type-selectors
+ if(m=s.match(/\#([-][_A-Z]{2,}|[_A-Z]([-_A-Z\d]+)?)/gim)){r[1]=m.length;};//#id
+ if(m=s.match(/\[.*?\]/gim)){r[2]=m.length;};//[attributes]
+ if(m=s.match(/\.([-][_A-Z]{2,}|[_A-Z]([-_A-Z\d]+)?)/gim)){r[2]+=m.length;};//.class
+ if(m=s.match(/:(hover|focus|active|visited|link|empty|lang|scope|target|root|fullscreen|default|dir|left|right|optional|any|valid|in(determinate|valid)|(in|out\-of)\-range|(requir|check|((dis|en)abl))ed|(first|only|last)\-(child|of\-type)|(((nth(\-last)?)\-(child|of\-type))\(.*\))|((\-.+\-)?(read\-(write|only))))/gim)){r[2]+=m.length;};//:pseudo-classes except ':not'
+ if(m=s.match(/([:]{1,2}(before|after|first\-(letter|line)))|(::(marker|backdrop|(spelling|grammar)\-error|((\-.+\-)?((selection|placeholder|fill(\-(lower|upper))?)|(progress\-(bar|value))|(thumb|track)|(range\-(progress|thumb|track))))))/gim)){r[3]+=m.length;};//pseudo-elements
+
+ return r;
+};
+//
+console.dir(SpecificityOf('body:not(html #ss.red):not(:focus) a.red:link'));
+console.dir(SpecificityOf(' h1 + *[rel=up]'));
