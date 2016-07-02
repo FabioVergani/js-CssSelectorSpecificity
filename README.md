@@ -9,8 +9,10 @@ count the number of other attributes and pseudo-classes in the selector (= c)
 count the number of element names and pseudo-elements in the selector (= d)
 The specificity is based only on the form of the selector. In particular, a selector of the form "[id=p33]" is counted as an attribute selector (a=0, b=0, c=1, d=0), even if the id attribute is defined as an "ID" in the source document's DTD.
 
-Concatenating the four numbers a-b-c-d (in a number system with a large base) gives the specificity.
+Selectors inside the negation pseudo-class are counted like any other, 
+but the negation itself does not count as a pseudo-class.
 
+Concatenating the four numbers a-b-c-d (in a number system with a large base) gives the specificity.
 
 The negation pseudo-class, :not(X), is a functional notation taking a simple selector (excluding the negation pseudo-class itself) as an argument. It represents an element that is not represented by its argument.
 
